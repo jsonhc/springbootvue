@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: '22'
     - name: Install dependencies and build
-      run: cd vue-admin-template && npm install && npm run build
+      run: cd vue-admin-template && npm install && npm run build:prod
 
     - name: check
       run: pwd && ls -l
