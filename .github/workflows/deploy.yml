@@ -34,6 +34,13 @@ jobs:
     - name: check jar
       run: pwd && ls -l pet_bysj/target
 
+    - name: create dockerfile
+      run: |
+        cat >> vue-admin-template/Dockerfile << EOF
+        FROM registry.cn-hangzhou.aliyuncs.com/jsonhc/nginx:1.15
+        COPY ./dist  /usr/share/nginx/html
+        EOF
+
     - name: 'Docker Login'
       uses: azure/docker-login@v1
       with:
@@ -42,3 +49,5 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
         docker version
+        cd vue-admin-template && docker build -t ${{ env.LOGIN_SERVER }}/jsonhc/springbootvue-nginx:${{ github.sha }} .
+        docker push ${{ env.LOGIN_SERVER }}/jsonhc/springbootvue-nginx:${{ github.sha }}
