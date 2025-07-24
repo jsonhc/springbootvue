@@ -28,4 +28,4 @@ jobs:
     - name: Build with Maven
       run: pwd && ls -l && mvn --file pet_bysj/pom.xml clean package -Dmaven.test.skip=true 
     - name: check jar
-      run: pwd && ls -l pet_bysj
+      run: pwd && ls -l pet_bysj/target
