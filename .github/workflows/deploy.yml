@@ -29,3 +29,9 @@ jobs:
       run: pwd && ls -l && mvn --file pet_bysj/pom.xml clean package -Dmaven.test.skip=true 
     - name: check jar
       run: pwd && ls -l pet_bysj/target
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GH_PAGES_TOKEN }}
+        publish_dir: ./pet_bysj/target/backend-project.jar
