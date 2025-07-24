@@ -17,4 +17,7 @@ jobs:
       run: cd vue-admin-template && npm install && npm run build:prod
 
     - name: check
-      run: pwd && ls -l
+      run: pwd && ls -l vue-admin-template
+
+    - name: maven build
+      run: cd pet_bysj && pwd && ls -l
