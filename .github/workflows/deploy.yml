@@ -19,13 +19,11 @@ jobs:
     - name: check dist
       run: pwd && ls -l vue-admin-template
 
-    - name: maven build
-      uses: qcastel/github-actions-maven-cmd@master
+    - uses: actions/setup-java@v4
       with:
-        maven-args: "-DskipTests clean install"
-        maven-project-folder: "pet_bysj/"
-      env:
-        JAVA_HOME: /usr/lib/jvm/java-1.8-openjdk/
-
-    - name: check jar
-      run: pwd && ls -l
+        distribution: 'temurin'
+        java-version: '8'
+        cache: 'maven'
+        cache-dependency-path: 'pet_bysj/pom.xml'
+    - name: Build with Maven
+      run: pwd && ls -l && mvn --file pet_bysj/pom.xml clean package -Dmaven.test.skip=true 
