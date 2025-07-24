@@ -16,8 +16,16 @@ jobs:
     - name: Install dependencies and build
       run: cd vue-admin-template && npm install && npm run build:prod
 
-    - name: check
+    - name: check dist
       run: pwd && ls -l vue-admin-template
 
     - name: maven build
-      run: cd pet_bysj && pwd && ls -l
+      uses: qcastel/github-actions-maven-cmd@master
+      with:
+        maven-args: "-DskipTests clean install"
+        maven-project-folder: "pet_bysj/"
+      env:
+        JAVA_HOME: /usr/lib/jvm/java-1.8-openjdk/
+
+    - name: check jar
+      run: pwd && ls -l
