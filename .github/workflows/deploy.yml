@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    - name: Install dependencies and build
+      run: cd vue-admin-template && npm install && npm run build
+
+    - name: check
+      run: pwd && ls -l
